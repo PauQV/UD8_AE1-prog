@@ -1,6 +1,6 @@
 package com.dam.pqv;
 
-public class Electrodomestico {
+public class Electrodomestico implements Comparable<Electrodomestico>{
 
 	protected double precioBase = 100; // €
 	protected String color = "blanco"; // blanco - negro - rojo - azul - gris
@@ -124,4 +124,12 @@ public class Electrodomestico {
 	public String toString() {
 		return ("Electrodomestico // Precio base: " + this.precioBase + " // Color: " + this.color + " // Peso: " + this.peso + " // Consumo energetico: " + this.consumoEnergetico + " // Precio final: " + this.precioFinal());
 	}
+
+	@Override
+	public int compareTo(Electrodomestico o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 }

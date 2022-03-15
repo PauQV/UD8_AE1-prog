@@ -1,6 +1,7 @@
 package com.dam.pqv;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -10,6 +11,7 @@ public class Main {
 
 		Scanner sc = new Scanner(System.in);
 		int opcion;
+		Boolean encendido = true;
 		
 		Electrodomestico e1 = new Electrodomestico();
 		e1.setConsumoEnergetico('B');
@@ -36,7 +38,9 @@ public class Main {
 		electrodomesticos.add(t2);
 		electrodomesticos.add(t3);
 		
-		System.out.println("1-Listar electrodomesticos\n2-Añadir electrodomestico\n3-Eliminar electrodoméstico\n4-Mostrar precios agrupados"); opcion=sc.nextInt();
+		while (encendido) {
+		
+		System.out.println("1-Listar electrodomesticos\n2-Añadir electrodomestico\n3-Eliminar electrodoméstico\n4-Mostrar precios agrupados\n5-Apagar programa"); opcion=sc.nextInt();
 		switch(opcion) {
 		case 1:
 			System.out.println(listarElectrodomesticos(electrodomesticos));
@@ -63,9 +67,24 @@ public class Main {
 		case 4:
 			System.out.println(preciosAgrupados(electrodomesticos));
 			break;
+		case 5:
+			System.out.println("Apagando programa...\n\n");
+			encendido = false;
+			break;
 		default:
 			System.out.println("Opción no válida");
 		}
+		
+		}
+		
+		System.out.println("ANEXO III: Ordenacion con comparators");
+		
+		Collections.sort(electrodomesticos, new OrdenarElectrodomesticoMayorAMenorPeso());
+		System.out.println(listarElectrodomesticos(electrodomesticos));
+		Collections.sort(electrodomesticos, new OrdenarElectrodomesticoMenorAMayorPrecio());
+		System.out.println(listarElectrodomesticos(electrodomesticos));
+		Collections.sort(electrodomesticos, Collections.reverseOrder(new OrdenarElectrodomesticoPorConsumoMenAMay()));
+		System.out.println(listarElectrodomesticos(electrodomesticos));
 		
 		sc.close();
 	}
